@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Embalagens Cardozo — V9 (Final)</title>
+<meta name="description" content="Bombonas fabricadas (50L e 200L), tambores metálicos e contêineres IBC. Fabricação própria de bombonas; recondicionamento somente de tambores e IBCs. Qualidade, suporte e entrega ágil." />
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+:root{--ink:#0b1c3a;--skyA:#0ea5e9;--skyB:#0369a1;--blue600:#2563eb;--blue700:#1d4ed8}
+html{scroll-behavior:auto;overflow-x:hidden}
+body{overflow-x:hidden;background:
+ radial-gradient(900px 680px at 10% -10%, #e0f2fe 0%, #f0f9ff 35%, transparent 60%),
+ radial-gradient(1100px 800px at 90% 0%, #e0f2fe 0%, #f8fbff 45%, transparent 60%),
+ linear-gradient(180deg,#ffffff 0%,#f3f9ff 55%,#e6f4ff 100%)}
+.fixed-header{position:fixed;top:0;left:0;right:0;z-index:60;background:rgba(255,255,255,.96);backdrop-filter:saturate(140%) blur(8px);border-bottom:1px solid #e2e8f0}
+.header-spacer{height:92px}
+.btn-grad{background:linear-gradient(90deg,var(--skyA),var(--skyB));color:#fff}
+.btn-ol{border:1px solid rgba(3,105,161,.22);background:rgba(14,165,233,.08);color:var(--skyB)}
+
+a,button,.product-card,.filter-btn,.nav-link,.swatch,.slider-btn,.fab-whats,.fab-ig,.card{transition:transform .2s,box-shadow .2s,filter .2s}
+a:hover,button:hover,.product-card:hover,.filter-btn:hover,.nav-link:hover,.swatch:hover,.slider-btn:hover,.fab-whats:hover,.fab-ig:hover,.card:hover{transform:translateY(-2px);box-shadow:0 10px 28px rgba(14,165,233,.18)}
+.icon-24{width:24px;height:24px;display:inline-block;border-radius:8px}
+.top-band{background:linear-gradient(90deg,#dbeafe,#e0f2fe);border-bottom:1px solid #bfdbfe}
+.nav-link,.filter-btn{padding:.6rem 1rem;border-radius:9999px;border:1px solid rgba(2,132,199,.18);background:#fff}
+.filter-btn.selected,.nav-link.active{background:linear-gradient(90deg,var(--skyA),var(--skyB));color:#fff;border-color:transparent;box-shadow:0 8px 22px rgba(3,105,161,.25)}
+#logoLink:hover{box-shadow:none !important; transform:none !important;}
+
+.slider{position:relative;overflow:hidden;isolation:isolate;border-radius:1rem;background:#fff;box-shadow:0 8px 26px rgba(2,132,199,.10)}
+.slide-track{display:flex;transition:transform .6s ease}
+.slide{min-width:100%;flex:0 0 100%}
+.slider-nav{position:absolute;inset:0;display:flex;align-items:center;justify-content:space-between;pointer-events:none}
+.slider-btn{pointer-events:auto;background:rgba(255,255,255,.96);border:none;border-radius:9999px;padding:.5rem .75rem;cursor:pointer;box-shadow:0 6px 20px rgba(3,105,161,.10)}
+.dot-wrap{position:absolute;left:0;right:0;bottom:.5rem;display:flex;justify-content:center;gap:.5rem}
+.dot{width:10px;height:10px;border-radius:9999px;background:#cbd5e1;cursor:pointer}
+.dot.active{background:#0ea5e9}
+.product-card img{transition:transform .25s ease}
+.product-card:hover img{transform:scale(1.03)}
+.swatch{width:24px;height:24px;border-radius:8px;border:1px solid rgba(0,0,0,.15);cursor:pointer}
+.swatch.selected{outline:2px solid #0ea5e9;outline-offset:2px}
+.hamburger{display:inline-flex;flex-direction:column;gap:4px}
+.hamburger span{width:24px;height:2px;background:var(--skyB);display:block;border-radius:2px}
+
+.fab-whats{position:fixed;right:16px;bottom:18px;z-index:60;background:linear-gradient(135deg,#22c55e,#16a34a);color:#fff;border-radius:9999px;display:inline-flex;align-items:center;justify-content:center;width:56px;height:56px;font-size:22px}
+.fab-ig{position:fixed;right:84px;bottom:18px;z-index:60;background:linear-gradient(135deg,#ff7a59,#d62976);color:#fff;border-radius:9999px;display:inline-flex;align-items:center;justify-content:center;width:56px;height:56px;font-size:22px}
+
+.card{background:#fff;border-radius:1rem;padding:1rem;box-shadow:0 6px 18px rgba(2,132,199,.08)}
+
+section#inicio{background:linear-gradient(to right,#f0f9ff,#ffffff,#f0f9ff)}
+section#sobre{background:#f8fafc}
+section#produtos{background:#eef6ff}
+section#fabricacao{background:#e6f0ff}
+section#recond{background:#edf2ff}
+section#atendimento{background:#f6fbff}
+section#contato{background:#ecfeff}
+
+.etapa-card{position:relative}
+.etapa-num{position:absolute;top:-12px;left:-12px;background:#0ea5e9;color:#fff;width:36px;height:36px;border-radius:9999px;display:flex;align-items:center;justify-content:center;font-weight:700;box-shadow:0 8px 24px rgba(14,165,233,.35)}
+.etapa-num-alt{background:#174e8f}
+
+.toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:#0b1c3a;color:#fff;border-radius:12px;padding:.75rem 1rem;z-index:80;display:none;box-shadow:0 20px 40px rgba(0,0,0,.25)}
+.toast.show{display:block}
+
+.modal-actions{display:flex;gap:.75rem}
+@media (max-width: 767px){
+ .modal-actions{flex-direction:column}
+ .modal-actions a,.modal-actions button{width:100%}
+}
+
+#igPrompt .content{max-width:28rem;width:100%}
+</style>
+</head>
+<body class="antialiased text-slate-800">
+
+<div class="top-band">
+ <div class="max-w-6xl mx-auto px-4 sm:px-6 py-2 flex items-center justify-between gap-3 text-sm">
+ <div class="text-slate-700">Bem-vindo(a) à Embalagens Cardozo</div>
+ <div class="flex items-center gap-3">
+ <a href="https://www.instagram.com/embalagenscardozo/" target="_blank" class="inline-flex items-center gap-1 px-2 py-1 rounded-lg border border-slate-300 bg-white hover:shadow">
+ <span aria-hidden="true">📸</span><span class="hidden sm:inline">Instagram</span>
+ </a>
+ <a href="https://wa.me/554834342098" target="_blank" class="inline-flex items-center gap-1 px-2 py-1 rounded-lg border border-slate-300 bg-white hover:shadow">
+ <span aria-hidden="true">💬</span><span class="hidden sm:inline">WhatsApp</span>
+ </a>
+ </div>
+ </div>
+</div>
+
+<header class="fixed-header">
+ <div class="max-w-6xl mx-auto px-4 sm:px-6">
+ <div class="grid grid-cols-3 md:grid-cols-[1fr_auto_1fr] items-center h-20">
+ <button id="menuBtn" class="md:hidden h-12 w-12 inline-flex items-center justify-center rounded-xl border border-slate-300" aria-label="Abrir menu"><span class="hamburger"><span></span><span></span><span></span></span></button>
+ <a id="logoLink" href="#inicio" class="col-start-3 md:col-start-2 justify-self-end md:justify-self-center">
+ <img src="icons/logo.svg" alt="Embalagens Cardozo" class="h-16 md:h-24 w-auto" />
+ </a>
+ <nav class="hidden md:flex items-center gap-3 justify-self-end">
+ <a id="navInicio" href="#inicio" class="nav-link">Início</a>
+ <a id="navSobre" href="#sobre" class="nav-link">Sobre</a>
+ <a id="navProdutos" href="#produtos" class="nav-link">Produtos</a>
+ <a id="navFab" href="#fabricacao" class="nav-link">Fabricação</a>
+ <a id="navRecond" href="#recond" class="nav-link">Recondicionamento</a>
+ <a id="navAtendimento" href="#atendimento" class="nav-link">Atendimento</a>
+ <a id="navContato" href="#contato" class="nav-link">Contato</a>
+ </nav>
+ </div>
+ <div id="mobileMenu" class="hidden md:hidden pb-4">
+ <nav class="grid gap-3 text-slate-700">
+ <a id="mInicio" href="#inicio">Início</a>
+ <a id="mSobre" href="#sobre">Sobre</a>
+ <a id="mProdutos" href="#produtos">Produtos</a>
+ <a id="mFab" href="#fabricacao">Fabricação</a>
+ <a id="mRecond" href="#recond">Recondicionamento</a>
+ <a id="mAtendimento" href="#atendimento">Atendimento</a>
+ <a id="mContato" href="#contato">Contato</a>
+ </nav>
+ </div>
+ </div>
+</header>
+<div class="header-spacer"></div>
+
+<section id="inicio" class="relative">
+ <div class="max-w-6xl mx-auto px-4 sm:px-6 py-10 md:py-14">
+ <div class="grid md:grid-cols-2 gap-8 items-center">
+ <div>
+ <h1 id="heroTitle" class="text-3xl md:text-4xl font-extrabold leading-tight" style="color:var(--ink)">Soluções em Bombonas, Tambores e IBC — qualidade garantida e entrega ágil.</h1>
+ <p id="heroDesc" class="mt-4 text-slate-700">Homologação, frota parceira e <strong>suporte comercial dedicado</strong>. Atendemos <strong>quase toda a América do Sul</strong>.</p>
+ <div class="mt-6 flex gap-3">
+ <a id="ctaProducts" href="#produtos" class="inline-flex items-center rounded-xl btn-grad px-5 py-3 font-medium">Ver Produtos</a>
+ <a id="ctaWhats" href="https://wa.me/554834342098" target="_blank" class="inline-flex items-center rounded-xl btn-ol px-5 py-3 font-medium"><span class="mr-2" aria-hidden="true">💬</span>Falar no WhatsApp</a>
+ </div>
+ <div class="mt-6 flex items-center gap-4">
+ <img src="icons/selo_inmetro.png" alt="Selo Inmetro" class="h-10 w-auto rounded-md">
+ <img src="icons/selo_qualidade.png" alt="Selo Qualidade" class="h-10 w-auto rounded-md">
+ <img src="icons/selo_frota.png" alt="Selo Frota" class="h-10 w-auto rounded-md">
+ <img src="icons/selo_sustentabilidade.png" alt="Selo Sustentabilidade" class="h-10 w-auto rounded-md">
+ </div>
+ </div>
+ <div>
+ <div class="slider">
+ <div id="slideTrack" class="slide-track">
+ <div class="slide"><img src="info/hero.png" alt="Hero Embalagens Cardozo" class="w-full h-80 object-cover"></div>
+ <div class="slide"><img id="rnd1" src="" alt="Produto" class="w-full h-80 object-cover"></div>
+ <div class="slide"><img id="rnd2" src="" alt="Produto" class="w-full h-80 object-cover"></div>
+ </div>
+ <div class="slider-nav px-2">
+ <button id="prevSlide" class="slider-btn" aria-label="Anterior">←</button>
+ <button id="nextSlide" class="slider-btn" aria-label="Próximo">→</button>
+ </div>
+ <div id="dots" class="dot-wrap"></div>
+ </div>
+ </div>
+ </div>
+ </div>
+</section>
+
+<section id="sobre">
+ <div class="max-w-6xl mx-auto px-4 sm:px-6 py-12">
+ <div class="grid md:grid-cols-2 gap-8 items-center">
+ <img src="info/sobre.png" alt="Nossa empresa e instalações" class="w-full rounded-2xl shadow" onerror="this.style.display='none'">
+ <div>
+ <h2 id="aboutTitle" class="text-2xl md:text-3xl font-semibold" style="color:var(--ink)">Sobre a <strong>Embalagens Cardozo</strong></h2>
+ <p id="aboutP1" class="mt-4 text-slate-700">Fabricamos e comercializamos <strong>bombonas </strong>.<strong>Recondicionamos <strong>tambores metálicos</strong> e <strong>contêineres IBC</strong>.</p>
+ <p id="aboutP2" class="mt-2 text-slate-700">Compromisso com <strong>qualidade</strong>, <strong>entrega ágil</strong> e <strong>sustentabilidade</strong>.</p>
+ <p id="aboutP3" class="mt-2 text-slate-700">Integramos <strong>triagem criteriosa</strong>, <strong>higienização controlada</strong> e <strong>testes de estanqueidade</strong> conforme normas técnicas.</p>
+ <p id="aboutP4" class="mt-2 text-slate-700">Com estoque variado, <strong>frota parceira</strong> e equipe ágil, atendemos demandas pontuais e operações contínuas em Santa Catarina, estados vizinhos e em <strong>grande parte da América do Sul</strong>.</p>
+ </div>
+ </div>
+ </div>
+</section>
+
+<section id="produtos">
+ <div class="max-w-6xl mx-auto px-4 sm:px-6 py-12">
+ <div class="flex flex-col gap-3">
+ <div>
+ <h2 id="prodTitle" class="text-2xl md:text-3xl font-semibold" style="color:var(--ink)">Produtos</h2>
+ <p id="prodDesc" class="text-slate-700">Escolha por categoria e, quando disponível, selecione a cor.</p>
+ </div>
+ <div class="flex flex-wrap gap-2 pb-1" id="categoryWrap" role="tablist" aria-label="Filtros de produtos">
+ <button data-filter="todos" class="filter-btn">Todos</button>
+ <button data-filter="bombonas" class="filter-btn">Bombonas</button>
+ <button data-filter="tambores" class="filter-btn">Tambores</button>
+ <button data-filter="containers" class="filter-btn">Contêineres</button>
+ </div>
+ </div>
+
+ <div class="mt-8 grid sm:grid-cols-2 lg:grid-cols-3 gap-6" id="productGrid">
+ 
+ <article class="product-card" data-category="bombonas">
+ <div class="bg-white rounded-2xl shadow p-4 flex flex-col h-full card">
+ <img data-img="bombona200" src="produtos/bombona_200_tf_azul.png" alt="Bombona 200L" class="w-full h-60 object-cover rounded-xl cursor-pointer product-photo" data-product="tf200">
+ <h3 class="mt-4 font-semibold" style="color:var(--ink)"><strong>Bombona 200L Tampa Fixa</strong></h3>
+ <p class="text-sm text-slate-700 mt-1">Alta resistência, vedação confiável e durabilidade.</p>
+ <div class="mt-3 flex items-center gap-3">
+ <span class="text-sm text-slate-700 font-medium">Cor:</span>
+ <button class="swatch" data-target="bombona200" data-color="azul" title="Azul" style="background:#1e3a8a"></button>
+ <button class="swatch" data-target="bombona200" data-color="preta" title="Preta" style="background:#111827"></button>
+ </div>
+ <a href="https://wa.me/554834342098?text=Olá!%20Tenho%20interesse%20na%20Bombona%20200L%20Tampa%20Fixa." target="_blank" class="mt-4 inline-flex items-center justify-center rounded-xl btn-grad px-4 py-2">Solicitar orçamento</a>
+ </div>
+ </article>
+
+<article class="product-card" data-category="bombonas">
+ <div class="bg-white rounded-2xl shadow p-4 flex flex-col h-full card">
+ <img data-img="bombona200tr" src="produtos/bombona_200_tr_azul.png" alt="Bombona 200L Tampa Removível" class="w-full h-60 object-cover rounded-xl cursor-pointer product-photo" data-product="tr200">
+ <h3 class="mt-4 font-semibold" style="color:var(--ink)"><strong>Bombona 200L Tampa Removível</strong></h3>
+ <p class="text-sm text-slate-700 mt-1">Acesso facilitado, manutenção simples e robustez.</p>
+ <div class="mt-3 flex items-center gap-3 flex-wrap">
+ <span class="text-sm text-slate-700 font-medium">Cor:</span>
+ <button class="swatch" data-target="bombona200tr" data-color="azul" title="Azul" style="background:#1e3a8a"></button>
+ <button class="swatch" data-target="bombona200tr" data-color="preta" title="Preta" style="background:#111827"></button>
+ </div>
+ <a id="cta-tr200" href="https://wa.me/554834342098?text=Olá!%20Tenho%20interesse%20na%20Bombona%20200L%20Tampa%20Removível." target="_blank" class="mt-4 inline-flex items-center justify-center rounded-xl btn-grad px-4 py-2">Solicitar orçamento</a>
+ </div>
+</article>
+ 
+ <article class="product-card" data-category="bombonas">
+ <div class="bg-white rounded-2xl shadow p-4 flex flex-col h-full card">
+ <img data-img="bombona50" src="produtos/bombona_50_azul.png" alt="Bombona 50L" class="w-full h-60 object-cover rounded-xl cursor-pointer product-photo" data-product="tf50">
+ <h3 class="mt-4 font-semibold" style="color:var(--ink)"><strong>Bombona 50L</strong></h3>
+ <p class="text-sm text-slate-700 mt-1">Leve, prática e ideal para múltiplos usos.</p>
+ <div class="mt-3 flex items-center gap-3">
+ <span class="text-sm text-slate-700 font-medium">Cor:</span>
+ <button class="swatch" data-target="bombona50" data-color="azul" title="Azul" style="background:#1e3a8a"></button>
+ <button class="swatch" data-target="bombona50" data-color="preta" title="Preta" style="background:#111827"></button>
+ </div>
+ <a href="https://wa.me/554834342098?text=Olá!%20Tenho%20interesse%20na%20Bombona%2050L." target="_blank" class="mt-auto inline-flex items-center justify-center rounded-xl btn-grad px-4 py-2">Solicitar orçamento</a>
+ </div>
+ </article>
+ 
+ <article class="product-card" data-category="tambores">
+ <div class="bg-white rounded-2xl shadow p-4 flex flex-col h-full card">
+ <img src="produtos/tambor_200_revestido.png" alt="Tambor metálico 200L revestido" class="w-full h-60 object-cover rounded-xl cursor-pointer product-photo" data-product="tm200rev">
+ <h3 class="mt-4 font-semibold" style="color:var(--ink)"><strong>Tambor Metálico 200L Revestido</strong></h3>
+ <p class="text-sm text-slate-700 mt-1">Revestimento interno para maior proteção.</p>
+ <a href="https://wa.me/554834342098?text=Interesse%20no%20Tambor%20200L%20Revestido" target="_blank" class="mt-4 inline-flex items-center justify-center rounded-xl btn-grad px-4 py-2">Solicitar orçamento</a>
+ </div>
+ </article>
+ <article class="product-card" data-category="tambores">
+ <div class="bg-white rounded-2xl shadow p-4 flex flex-col h-full card">
+ <img src="produtos/tambor_200_tampa_fixa.png" alt="Tambor metálico 200L tampa fixa" class="w-full h-60 object-cover rounded-xl cursor-pointer product-photo" data-product="tm200tf">
+ <h3 class="mt-4 font-semibold" style="color:var(--ink)"><strong>Tambor Metálico 200L Tampa Fixa</strong></h3>
+ <p class="text-sm text-slate-700 mt-1">Resistência e vedação confiável.</p>
+ <a href="https://wa.me/554834342098?text=Interesse%20no%20Tambor%20200L%20Tampa%20Fixa" target="_blank" class="mt-4 inline-flex items-center justify-center rounded-xl btn-grad px-4 py-2">Solicitar orçamento</a>
+ </div>
+ </article>
+ 
+ <article class="product-card" data-category="containers">
+ <div class="bg-white rounded-2xl shadow p-4 flex flex-col h-full card">
+ <img src="produtos/container_ibc_madeira.png" alt="Contêiner IBC base de madeira" class="w-full h-60 object-cover rounded-xl cursor-pointer product-photo" data-product="ibcm">
+ <h3 class="mt-4 font-semibold" style="color:var(--ink)"><strong>Contêiner IBC (Base de Madeira)</strong></h3>
+ <p class="text-sm text-slate-700 mt-1">Estrutura robusta e versátil.</p>
+ <a href="https://wa.me/554834342098?text=Interesse%20no%20IBC%20base%20de%20madeira" target="_blank" class="mt-4 inline-flex items-center justify-center rounded-xl btn-grad px-4 py-2">Solicitar orçamento</a>
+ </div>
+ </article>
+ <article class="product-card" data-category="containers">
+ <div class="bg-white rounded-2xl shadow p-4 flex flex-col h-full card">
+ <img src="produtos/container_ibc_ferro.png" alt="Contêiner IBC base de ferro" class="w-full h-60 object-cover rounded-xl cursor-pointer product-photo" data-product="ibcf">
+ <h3 class="mt-4 font-semibold" style="color:var(--ink)"><strong>Contêiner IBC (Base de Ferro)</strong></h3>
+ <p class="text-sm text-slate-700 mt-1">Durabilidade e segurança no transporte.</p>
+ <a href="https://wa.me/554834342098?text=Interesse%20no%20IBC%20base%20de%20ferro" target="_blank" class="mt-4 inline-flex items-center justify-center rounded-xl btn-grad px-4 py-2">Solicitar orçamento</a>
+ </div>
+ </article>
+ </div>
+ </div>
+</section>
+
+<section id="fabricacao">
+ <div class="max-w-6xl mx-auto px-4 sm:px-6 py-12">
+ <h2 id="fabTitle" class="text-2xl md:text-3xl font-semibold" style="color:var(--ink)">Fabricação das <strong>Bombonas</strong></h2>
+ <p id="fabDesc" class="mt-2 text-slate-700">Produzimos com <strong>PEAD 100% virgem</strong> e também <strong>material reciclado</strong>, em linhas dedicadas para <strong>200L</strong> e <strong>50L</strong>.</p>
+ <div class="mt-8 grid md:grid-cols-3 gap-6">
+ <div class="card etapa-card">
+ <span class="etapa-num">1</span>
+ <img src="guiabombona/guia(1).png" alt="Guia Bombona 1" class="w-full h-40 object-cover rounded-xl">
+ <h3 class="mt-3 font-semibold" id="fabS1" style="color:var(--ink)">Matéria-prima</h3>
+ <p class="text-sm text-slate-700">PEAD virgem e reciclado, controle de lote.</p>
+ </div>
+ <div class="card etapa-card">
+ <span class="etapa-num">2</span>
+ <img src="guiabombona/guia(2).png" alt="Guia Bombona 2" class="w-full h-40 object-cover rounded-xl">
+ <h3 class="mt-3 font-semibold" id="fabS2" style="color:var(--ink)">Extrusão / Sopro</h3>
+ <p class="text-sm text-slate-700">Máquinas dedicadas para 50L e 200L.</p>
+ </div>
+ <div class="card etapa-card">
+ <span class="etapa-num">3</span>
+ <img src="guiabombona/guia(3).png" alt="Guia Bombona 3" class="w-full h-40 object-cover rounded-xl">
+ <h3 class="mt-3 font-semibold" id="fabS3" style="color:var(--ink)">Acabamento</h3>
+ <p class="text-sm text-slate-700">Corte, tampas e inspeção visual.</p>
+ </div>
+ </div>
+ </div>
+</section>
+
+<section id="recond">
+ <div class="max-w-6xl mx-auto px-4 sm:px-6 py-12">
+ <h2 id="recondTitle" class="text-2xl md:text-3xl font-semibold" style="color:var(--ink)">Como funciona o <strong>Recondicionamento</strong> (Tambores e IBCs)</h2>
+ <p id="recondDesc" class="mt-2 text-slate-700">Coletamos, lavamos, lixamos quando necessário, limpamos externamente, pintamos (quando aplicável), inspecionamos e testamos — com foco em segurança e qualidade.</p>
+ <div class="mt-8 grid md:grid-cols-3 gap-6">
+ <div class="card etapa-card"><span class="etapa-num etapa-num-alt">1</span><img src="guiatambor/guia(1).png" class="w-full h-40 object-cover rounded-xl" alt="Guia Tambor 1"><h3 class="mt-3 font-semibold" id="rcS1" style="color:var(--ink)">Coleta & Recebimento</h3><p class="text-sm text-slate-700">Retirada no cliente e conferência do estado geral.</p></div>
+ <div class="card etapa-card"><span class="etapa-num etapa-num-alt">2</span><img src="guiatambor/guia(2).png" class="w-full h-40 object-cover rounded-xl" alt="Guia Tambor 2"><h3 class="mt-3 font-semibold" id="rcS2" style="color:var(--ink)">Triagem</h3><p class="text-sm text-slate-700">Separação por tipo, volume e condição.</p></div>
+ <div class="card etapa-card"><span class="etapa-num etapa-num-alt">3</span><img src="guiatambor/guia(3).png" class="w-full h-40 object-cover rounded-xl" alt="Guia Tambor 3"><h3 class="mt-3 font-semibold" id="rcS3" style="color:var(--ink)">Lavagem interna</h3><p class="text-sm text-slate-700">Processo controlado para remoção de resíduos.</p></div>
+ <div class="card etapa-card"><span class="etapa-num etapa-num-alt">4</span><img src="guiatambor/guia(4).png" class="w-full h-40 object-cover rounded-xl" alt="Guia Tambor 4"><h3 class="mt-3 font-semibold" id="rcS4" style="color:var(--ink)">Lixação externa</h3><p class="text-sm text-slate-700">Lixar tambores enferrujados por fora.</p></div>
+ <div class="card etapa-card"><span class="etapa-num etapa-num-alt">5</span><img src="guiatambor/guia(5).png" class="w-full h-40 object-cover rounded-xl" alt="Guia Tambor 5"><h3 class="mt-3 font-semibold" id="rcS5" style="color:var(--ink)">Limpeza externa</h3><p class="text-sm text-slate-700">Remoção de poeira e partículas.</p></div>
+ <div class="card etapa-card"><span class="etapa-num etapa-num-alt">6</span><img src="guiatambor/guia(6).png" class="w-full h-40 object-cover rounded-xl" alt="Guia Tambor 6"><h3 class="mt-3 font-semibold" id="rcS6" style="color:var(--ink)">Pintura</h3><p class="text-sm text-slate-700">Acabamento, inspeção final e liberação.</p></div>
+ </div>
+ </div>
+</section>
+
+<section id="atendimento">
+ <div class="max-w-6xl mx-auto px-4 sm:px-6 py-12">
+ <div class="grid md:grid-cols-3 gap-6">
+ <div class="card">
+ <h3 id="hoursTitle" class="text-lg font-semibold" style="color:var(--ink)">Horários</h3>
+ <div class="mt-3 text-slate-700 text-sm grid grid-cols-2 gap-y-1">
+ <div class="font-medium">Segunda</div><div><strong>07:45</strong>–<strong>12:00</strong> e <strong>13:00</strong>–<strong>17:30</strong></div>
+ <div class="font-medium">Terça</div><div><strong>07:45</strong>–<strong>12:00</strong> e <strong>13:00</strong>–<strong>17:30</strong></div>
+ <div class="font-medium">Quarta</div><div><strong>07:45</strong>–<strong>12:00</strong> e <strong>13:00</strong>–<strong>17:30</strong></div>
+ <div class="font-medium">Quinta</div><div><strong>07:45</strong>–<strong>12:00</strong> e <strong>13:00</strong>–<strong>17:30</strong></div>
+ <div class="font-medium">Sexta</div><div><strong>07:45</strong>–<strong>12:00</strong> e <strong>13:00</strong>–<strong>17:15</strong></div>
+ <div class="font-medium">Sábado</div><div><strong>Fechado</strong></div>
+ <div class="font-medium">Domingo</div><div><strong>Fechado</strong></div>
+ </div>
+ </div>
+ <div class="card">
+ <h3 id="contactCardTitle" class="text-lg font-semibold" style="color:var(--ink)">Contato</h3>
+ <p class="mt-3 text-slate-700"><strong>Ligação:</strong> <a href="tel:+554834342098" class="underline">(48) 3434-2098</a></p>
+ <p class="text-slate-700"><strong>WhatsApp:</strong> <a class="underline" href="https://wa.me/554834342098" target="_blank">(48) 3434-2098</a></p>
+ <p class="mt-3 text-slate-700"><strong>Endereço:</strong> Rodovia Genezio Mazon, SC-445 - Vila Rica, Morro da Fumaça - SC, 88830-000</p>
+ </div>
+ <div class="card">
+ <h3 id="locationTitle" class="text-lg font-semibold" style="color:var(--ink)">Localização</h3>
+ <div class="mt-3 rounded-xl overflow-hidden">
+ <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3502.698426846431!2d-49.2318555!3d-28.6088226!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95217a92f60fa03b%3A0xd3de396545d21ea!2sEmbalagens%20Cardozo!5e0!3m2!1spt-BR!2sbr!4v1757026075709!5m2!1spt-BR!2sbr"
+ width="100%" height="260" style="border:0" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+ </div>
+ </div>
+ </div>
+ </div>
+</section>
+
+<section id="contato">
+ <div class="max-w-6xl mx-auto px-4 sm:px-6 py-12">
+ <h2 id="contactTitle" class="text-2xl md:text-3xl font-semibold" style="color:var(--ink)">Contato</h2>
+ <p id="contactDesc" class="text-slate-700 mt-2">Preencha o formulário e <strong>retornaremos rapidamente</strong>.</p>
+
+ <form id="contactForm" class="mt-6 grid md:grid-cols-2 gap-6 bg-white p-6 rounded-2xl shadow" action="https://formsubmit.co/ajax/embalagenscardozo@hotmail.com" method="POST" novalidate>
+ <div class="md:col-span-2">
+ <label id="labelName" class="block text-sm font-medium text-slate-700">Nome</label>
+ <input id="nome" name="nome" type="text" maxlength="120" required pattern="[A-Za-zÀ-ÿ ]{2,120}"
+ class="mt-1 w-full rounded-xl border border-slate-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-600"
+ placeholder="Seu nome completo" />
+ <p id="nomeError" class="mt-1 text-xs text-red-600 hidden">Use apenas letras e espaços (2–120).</p>
+ </div>
+ <div>
+ <label id="labelEmail" class="block text-sm font-medium text-slate-700">E-mail</label>
+ <input id="email" name="email" type="email" required
+ class="mt-1 w-full rounded-xl border border-slate-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-600"
+ placeholder="voce@exemplo.com" />
+ <p id="emailError" class="mt-1 text-xs text-red-600 hidden">Informe um e-mail válido.</p>
+ </div>
+ <div class="grid md:grid-cols-3 grid-cols-1 gap-2">
+ <div class="md:col-span-1">
+ <label class="block text-sm font-medium text-slate-700">Código do País</label>
+ <div class="flex items-center rounded-xl border border-slate-300 overflow-hidden">
+ <span class="px-2 bg-slate-100 font-semibold">+</span>
+ <input id="codigoPais" name="codigoPais" type="tel" inputmode="numeric" maxlength="3"
+ class="flex-1 px-3 py-2 focus:outline-none" placeholder="55" value="55" required />
+ </div>
+ </div>
+ <div class="md:col-span-1">
+ <label class="block text-sm font-medium text-slate-700">DDD</label>
+ <input id="ddd" name="ddd" type="tel" inputmode="numeric" maxlength="3"
+ class="mt-1 w-full rounded-xl border border-slate-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-600"
+ placeholder="48" required />
+ </div>
+ <div class="md:col-span-1">
+ <label class="block text-sm font-medium text-slate-700">Telefone</label>
+ <input id="telefone" name="telefone" type="tel" inputmode="numeric" maxlength="12"
+ class="mt-1 w-full rounded-xl border border-slate-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-600"
+ placeholder="3434-2098" required />
+ </div>
+ <p id="telError" class="md:col-span-3 mt-1 text-xs text-red-600 hidden">Informe um telefone válido (somente números).</p>
+ </div>
+ <div class="md:col-span-2">
+ <label id="labelMsg" class="block text-sm font-medium text-slate-700">Mensagem</label>
+ <textarea id="mensagem" name="mensagem" rows="4" required class="mt-1 w-full rounded-xl border border-slate-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-600" placeholder="Como podemos ajudar?"></textarea>
+ <p id="msgError" class="mt-1 text-xs text-red-600 hidden">Descreva sua solicitação (mín. 4 caracteres).</p>
+ </div>
+ <div class="md:col-span-2 flex items-center justify-between">
+ <div class="text-xs text-slate-500">Ao enviar, você concorda com nossa <a href="politica_de_privacidade.html" class="underline">Política de Privacidade</a>.</div>
+ <button id="submitBtn" type="submit" class="rounded-xl btn-grad px-5 py-3 font-semibold">Enviar Formulário</button>
+ </div>
+ <p id="submitFeedback" class="md:col-span-2 text-sm hidden"></p>
+ </form>
+ </div>
+</section>
+
+<footer class="bg-white border-t border-slate-200">
+ <div class="max-w-6xl mx-auto px-4 sm:px-6 py-8">
+ <div class="text-center text-slate-700 text-sm">Obrigado pela visita!</div>
+ </div>
+ <div class="bg-gradient-to-r from-sky-600 to-sky-700 text-white">
+ <div class="max-w-6xl mx-auto px-4 sm:px-6 py-3 flex items-center justify-between text-xs">
+ <span>© <span id="year"></span> Embalagens Cardozo — Todos os direitos reservados.</span>
+ <span><a class="underline" href="politica_de_privacidade.html">Política de Privacidade</a> · <a class="underline" href="termos_de_uso.html">Termos de Uso</a></span>
+ </div>
+ </div>
+</footer>
+
+<a href="https://wa.me/554834342098" target="_blank" class="fab-whats" aria-label="WhatsApp">
+<img src="icons/whatsapp.svg" alt="" width="30" height="30">
+</a>
+<a href="https://www.instagram.com/embalagenscardozo/" target="_blank" class="fab-ig" aria-label="Instagram">
+ <img src="icons/instagram.svg" alt="Instagram" width="30" height="30">
+</a>
+
+<div id="prodModal" class="fixed inset-0 bg-slate-900/60 hidden items-center justify-center z-50 p-4" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+ <div class="bg-white rounded-2xl max-w-2xl w-full p-6 shadow-xl">
+ <div class="flex items-start gap-4">
+ <img id="modalImg" src="" alt="" class="w-40 h-40 object-cover rounded-xl">
+ <div class="flex-1">
+ <h3 id="modalTitle" class="text-xl font-semibold" style="color:var(--ink)">Produto</h3>
+ <p id="modalDesc" class="text-slate-700 mt-1">Descrição breve.</p>
+ <ul id="modalSpecs" class="mt-3 text-sm text-slate-700 grid md:grid-cols-2 gap-y-1"></ul>
+ <div class="mt-4 modal-actions">
+ <a id="modalCTA" href="#" target="_blank" class="inline-flex items-center justify-center rounded-xl btn-grad px-4 py-2">Solicitar orçamento</a>
+ <button id="modalClose" class="inline-flex items-center justify-center rounded-xl btn-ol px-4 py-2">Fechar</button>
+ </div>
+ </div>
+ </div>
+ </div>
+</div>
+
+<div id="igPrompt" class="fixed inset-0 bg-slate-900/60 hidden items-center justify-center z-50 p-4" role="dialog" aria-modal="true" aria-labelledby="igTitle">
+ <div class="content bg-white rounded-2xl p-6 shadow-xl">
+ <h3 id="igTitle" class="text-xl font-semibold" style="color:var(--ink)">Siga a gente no Instagram?</h3>
+ <p class="mt-2 text-slate-700">Postamos novidades de bombonas, tambores e IBCs. Quer acompanhar?</p>
+ <div class="mt-4 flex gap-3 flex-col sm:flex-row">
+ <a id="igFollow" href="https://www.instagram.com/embalagenscardozo/" target="_blank" class="inline-flex items-center justify-center rounded-xl btn-grad px-4 py-2">Seguir</a>
+ <button id="igNo" class="inline-flex items-center justify-center rounded-xl btn-ol px-4 py-2">Não, obrigado</button>
+ </div>
+ </div>
+</div>
+
+<div id="toast" class="toast"></div>
+
+<script>
+// util
+const $ = (sel, ctx=document) => ctx.querySelector(sel);
+const $$ = (sel, ctx=document) => Array.from(ctx.querySelectorAll(sel));
+
+// Ano atual e menu mobile
+$('#year').textContent = new Date().getFullYear();
+$('#menuBtn').addEventListener('click',()=>$('#mobileMenu').classList.toggle('hidden'));
+
+function showToast(msg, ok=true){const t=$('#toast');t.textContent=msg;t.style.background= ok ? '#065f46' : '#7f1d1d';t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2600)}
+
+// Smooth scroll
+function smoothScrollTo(el,duration){const startY=window.scrollY,targetY=el.getBoundingClientRect().top+startY-88,diff=targetY-startY;let startTime=null;function step(t){if(!startTime)startTime=t;const time=t-startTime;const pct=Math.min(time/duration,1);const ease=(1-Math.cos(Math.PI*pct))/2;window.scrollTo(0,startY+diff*ease);if(time<duration)requestAnimationFrame(step)}requestAnimationFrame(step)}
+$$('a[href^="#"]').forEach(a=>{a.addEventListener('click',e=>{const id=a.getAttribute('href');if(id.length>1){e.preventDefault();const target=document.querySelector(id);if(target){const isMobile=window.matchMedia('(max-width: 767px)').matches;smoothScrollTo(target,isMobile?1200:850)}const mm=$('#mobileMenu');if(mm && !mm.classList.contains('hidden')) mm.classList.add('hidden')}})})
+$('#ctaProducts').addEventListener('click',e=>{e.preventDefault();smoothScrollTo($('#produtos'),window.matchMedia('(max-width: 767px)').matches?1200:850)})
+
+// Slider com 2 imagens aleatórias (produtos)
+const productImgs=[
+ 'produtos/bombona_50_azul.png','produtos/bombona_50_preta.png',
+ 'produtos/bombona_200_tf_azul.png','produtos/bombona_200_tf_preta.png',
+ 'produtos/bombona_200_tr_azul.png','produtos/bombona_200_tr_preta.png',
+ 'produtos/container_ibc_madeira.png','produtos/container_ibc_ferro.png',
+ 'produtos/tambor_200_revestido.png','produtos/tambor_200_tampa_fixa.png'
+];
+function pickTwo(arr){const a=Math.floor(Math.random()*arr.length);let b=Math.floor(Math.random()*arr.length);while(b===a)b=Math.floor(Math.random()*arr.length);return [arr[a],arr[b]]}
+const [p1,p2]=pickTwo(productImgs);$('#rnd1').src=p1;$('#rnd2').src=p2;
+const track=$('#slideTrack');const slides=Array.from(track.children);let currentIndex=0;const dotsWrap=$('#dots');
+function buildDots(){dotsWrap.innerHTML='';slides.forEach((_,i)=>{const d=document.createElement('button');d.className='dot'+(i===0?' active':'');d.setAttribute('aria-label','Ir para o slide '+(i+1));d.addEventListener('click',()=>goTo(i));dotsWrap.appendChild(d)})}
+function updateDots(){dotsWrap.querySelectorAll('.dot').forEach((dot,i)=>dot.classList.toggle('active',i===currentIndex))}
+function goTo(i){currentIndex=(i+slides.length)%slides.length;track.style.transform=`translateX(-${currentIndex*100}%)`;updateDots()}
+function next(){goTo(currentIndex+1)}function prev(){goTo(currentIndex-1)}
+$('#nextSlide').addEventListener('click',next);$('#prevSlide').addEventListener('click',prev);buildDots();let auto=setInterval(next,4500);track.parentElement.addEventListener('mouseenter',()=>clearInterval(auto));track.parentElement.addEventListener('mouseleave',()=>auto=setInterval(next,4500));
+
+// Filtro de categorias
+$('#categoryWrap .filter-btn[data-filter="todos"]').classList.add('selected');
+$$('.filter-btn').forEach(btn=>{btn.addEventListener('click',()=>{const cat=btn.dataset.filter;$$('.filter-btn').forEach(b=>b.classList.remove('selected'));btn.classList.add('selected');$$('.product-card').forEach(card=>card.classList.toggle('hidden',!(cat==='todos'||card.dataset.category===cat)))})});
+
+// Swatches de cor (troca imagem do corpo)
+const colorFiles={bombona200:{azul:'produtos/bombona_200_tf_azul.png',preta:'produtos/bombona_200_tf_preta.png'},bombona200tr:{azul:'produtos/bombona_200_tr_azul.png',preta:'produtos/bombona_200_tr_preta.png'},bombona50:{azul:'produtos/bombona_50_azul.png',preta:'produtos/bombona_50_preta.png'}};
+$$('.swatch').forEach(s=>{s.addEventListener('click',()=>{if(s.dataset.target){const key=s.dataset.target,cor=s.dataset.color;$$(`.swatch[data-target="${key}"]`).forEach(x=>x.classList.remove('selected'));s.classList.add('selected');const img=$(`img[data-img="${key}"]`);if(img&&colorFiles[key]&&colorFiles[key][cor]){img.src=colorFiles[key][cor];}}
+ if(s.dataset.capFor){const k=s.dataset.capFor,c=s.dataset.capcolor;$$(`.swatch[data-cap-for="${k}"]`).forEach(x=>x.classList.remove('selected'));s.classList.add('selected');}
+})});
+
+// Modal de produto
+const productData={
+ tf200:{title:'Bombona 200L Tampa Fixa',desc:'Alta resistência, vedação confiável e durabilidade.',img:'produtos/bombona_200_tf_azul.png',specs:['Volume: 200L','Material: PEAD','Tampas superiores rebaixadas','Uso: Industrial/Químico','Vedação: Classe A']},
+ tr200:{title:'Bombona 200L Tampa Removível',desc:'Acesso facilitado, manutenção simples e robustez.',img:'produtos/bombona_200_tr_azul.png',specs:['Volume: 200L','Material: PEAD','Tampa removível','Uso: Industrial/Alimentos','Trava segura']},
+ tf50:{title:'Bombona 50L',desc:'Leve, prática e ideal para múltiplos usos.',img:'produtos/bombona_50_azul.png',specs:['Volume: 50L','Material: PEAD','Tampa fixa','Uso: Geral','Compacta']},
+ tm200rev:{title:'Tambor Metálico 200L Revestido',desc:'Revestimento interno para maior proteção.',img:'produtos/tambor_200_revestido.png',specs:['Volume: 200L','Material: Aço','Revestimento interno','Uso: Químico','Alta durabilidade']},
+ tm200tf:{title:'Tambor Metálico 200L Tampa Fixa',desc:'Resistência e vedação confiável.',img:'produtos/tambor_200_tampa_fixa.png',specs:['Volume: 200L','Material: Aço','Tampa fixa','Uso: Industrial','Vedação reforçada']},
+ ibcm:{title:'IBC Base de Madeira',desc:'Estrutura robusta e versátil.',img:'produtos/container_ibc_madeira.png',specs:['Volume: 1000L','Estrutura: Aço/Madeira','Válvula inferior','Uso: Granel','Palete madeira']},
+ ibcf:{title:'IBC Base de Ferro',desc:'Durabilidade e segurança no transporte.',img:'produtos/container_ibc_ferro.png',specs:['Volume: 1000L','Estrutura: Aço','Válvula inferior','Uso: Granel','Palete metálico']}
+};
+const modal=$('#prodModal');const modalImg=$('#modalImg');const modalTitle=$('#modalTitle');const modalDesc=$('#modalDesc');const modalSpecs=$('#modalSpecs');const modalCTA=$('#modalCTA');
+$$('.product-photo').forEach(img=>{img.addEventListener('click',()=>{const key=img.dataset.product,data=productData[key];if(!data)return;modalImg.src=data.img;modalImg.alt=data.title;modalTitle.textContent=data.title;modalDesc.textContent=data.desc;modalSpecs.innerHTML='';data.specs.forEach(s=>{const li=document.createElement('li');li.textContent='• '+s;modalSpecs.appendChild(li)});modalCTA.href='https://wa.me/554834342098?text=Olá!%20Tenho%20interesse%20em%20'+encodeURIComponent(data.title);modal.classList.remove('hidden');modal.classList.add('flex')})});
+$('#modalClose').addEventListener('click',()=>{modal.classList.add('hidden');modal.classList.remove('flex')});modal.addEventListener('click',e=>{if(e.target===modal){modal.classList.add('hidden');modal.classList.remove('flex')}});
+
+// CTA dinâmico para TR200 com cor do corpo e da tampa
+const trCta = $('#cta-tr200');
+if(trCta){trCta.addEventListener('click',e=>{const bodySel=document.querySelector('.swatch.selected[data-target="bombona200tr"]');const capSel=document.querySelector('.swatch.selected[data-cap-for="bombona200tr"]');const body=bodySel?bodySel.dataset.color:'azul';const cap=capSel?capSel.dataset.capcolor:'azul';const msg=`Olá! Tenho interesse na Bombona 200L Tampa Removível (cor do corpo: ${body}; cor da tampa: ${cap}).`;
+ trCta.href = 'https://wa.me/554834342098?text='+encodeURIComponent(msg);
+})}
+
+// Form validação + envio AJAX (inclui validação da mensagem)
+const form=$('#contactForm');const nome=$('#nome');const email=$('#email');const codigoPais=$('#codigoPais');const ddd=$('#ddd');const telefone=$('#telefone');const nomeError=$('#nomeError');const emailError=$('#emailError');const telError=$('#telError');const mensagem=$('#mensagem');const msgError=$('#msgError');const feedback=$('#submitFeedback');
+function validateName(){const ok=/^[A-Za-zÀ-ÿ ]{2,120}$/.test(nome.value.trim());nomeError.classList.toggle('hidden',ok);return ok}
+function validateEmail(){const ok=/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value);emailError.classList.toggle('hidden',ok);return ok}
+function validatePhone(){const cc=codigoPais.value.replace(/\D/g,'');const d=ddd.value.replace(/\D/g,'');const nt=telefone.value.replace(/\D/g,'');const ok=cc.length>=1&&cc.length<=3&&d.length>=2&&d.length<=3&&nt.length>=8&&nt.length<=10;telError.classList.toggle('hidden',ok);return ok}
+function validateMsg(){const ok=(mensagem.value.trim().length>=4);msgError.classList.toggle('hidden',ok);return ok}
+[codigoPais,ddd,telefone].forEach(el=>{el.addEventListener('input',()=>{el.value=el.value.replace(/[^\d]/g,'')});el.addEventListener('blur',validatePhone)});
+nome.addEventListener('input',()=>{nome.value=nome.value.replace(/[^A-Za-zÀ-ÿ ]+/g,'')});nome.addEventListener('blur',validateName);email.addEventListener('blur',validateEmail);mensagem.addEventListener('blur',validateMsg);
+form.addEventListener('submit',async(e)=>{e.preventDefault();const valid=validateName()&&validateEmail()&&validatePhone()&&validateMsg();if(!valid){showToast('Corrija os campos destacados e tente novamente.', false);return}
+const fd=new FormData(form);fd.append('_captcha','false');fd.append('_subject','Novo contato do site');
+try{const res=await fetch(form.action,{method:'POST',body:fd});if(!res.ok)throw new Error('fail');feedback.textContent='✅ Mensagem enviada com sucesso! Em breve retornaremos.';feedback.className='md:col-span-2 text-sm text-green-700';feedback.classList.remove('hidden');form.reset();codigoPais.value='55';showToast('Mensagem enviada!')}
+catch(e){feedback.textContent='⚠️ Não foi possível enviar agora. Tente novamente mais tarde.';feedback.className='md:col-span-2 text-sm text-red-700';feedback.classList.remove('hidden');showToast('Falha no envio.', false)}});
+
+// Destaque da seção atual no menu
+const navLinks=[...document.querySelectorAll('header .nav-link')];
+const sections=['inicio','sobre','produtos','fabricacao','recond','atendimento','contato'].map(id=>document.getElementById(id));
+const obs=new IntersectionObserver((entries)=>{entries.forEach(entry=>{const id=entry.target.id;const link=document.querySelector(`a[href="#${id}"]`);if(entry.isIntersecting){navLinks.forEach(l=>l.classList.remove('active'));if(link) link.classList.add('active');}})},{root:null,rootMargin:"-60% 0px -35% 0px",threshold:0});sections.forEach(s=>obs.observe(s));
+
+// Popout: mostrar apenas na primeira visita
+(function(){try{if(!localStorage.getItem('igPromptSeen')){setTimeout(()=>{$('#igPrompt').classList.remove('hidden');$('#igPrompt').classList.add('flex')}, 800)}; $('#igFollow').addEventListener('click',()=>{localStorage.setItem('igPromptSeen','1');$('#igPrompt').classList.add('hidden');$('#igPrompt').classList.remove('flex')}); $('#igNo').addEventListener('click',()=>{localStorage.setItem('igPromptSeen','1');$('#igPrompt').classList.add('hidden');$('#igPrompt').classList.remove('flex')});}catch(e){}})();
+</script>
+</body>
+</html>
