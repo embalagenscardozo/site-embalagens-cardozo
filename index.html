@@ -1,44 +1,5 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-<script>
-(function() {
-  const prefixes = ["icons/", "info/", "produtos/", "guiabombona/", "guiatambor/"];
-
-  // Arruma <img src="...">
-  document.querySelectorAll('img[src]').forEach(img => {
-    const s = img.getAttribute('src');
-    prefixes.forEach(p => { if (s.startsWith(p)) img.setAttribute('src', s.replace(p, '')); });
-  });
-
-  // Arruma data-imagens usadas no modal/dinâmica (se houver)
-  document.querySelectorAll('[data-img]').forEach(el => {
-    const s = el.getAttribute('src');
-    if (!s) return;
-    prefixes.forEach(p => { if (s.startsWith(p)) el.setAttribute('src', s.replace(p, '')); });
-  });
-
-  // Arruma URLs em estilo inline (background-image)
-  document.querySelectorAll('[style]').forEach(el => {
-    let st = el.getAttribute('style');
-    prefixes.forEach(p => { st = st.replaceAll(`url("${p}`, 'url("').replaceAll(`url(${p}`, 'url('); });
-    el.setAttribute('style', st);
-  });
-
-  // Arruma arrays/objetos JS já carregados (se definidos globalmente)
-  try {
-    if (window.productImgs) window.productImgs = window.productImgs.map(s =>
-      prefixes.reduce((acc,p)=> acc.startsWith(p)? acc.replace(p,'') : acc, s));
-    if (window.colorFiles) Object.keys(window.colorFiles).forEach(k => {
-      Object.keys(window.colorFiles[k]).forEach(c => {
-        window.colorFiles[k][c] = prefixes.reduce((acc,p)=> acc.startsWith(p)? acc.replace(p,'') : acc, window.colorFiles[k][c]);
-      });
-    });
-    if (window.productData) Object.values(window.productData).forEach(o => {
-      if (o.img) o.img = prefixes.reduce((acc,p)=> acc.startsWith(p)? acc.replace(p,'') : acc, o.img);
-    });
-  } catch(e) {}
-})();
-</script>
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
